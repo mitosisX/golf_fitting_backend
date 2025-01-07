@@ -7,7 +7,7 @@ const generateAccessToken = (user_id) =>
   jwt.sign({ user_id }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
 export const register = async (req, res) => {
-  const { email, password, username, role } = req.body;
+  const { email, password, role } = req.body;
 
   // validation is always important
   if (!email || !password) {
@@ -37,9 +37,14 @@ export const register = async (req, res) => {
       const createdUser = await insertRecord("users", user);
 
       if (role == "consumer") {
+        const { name, phone, address, golf_club_size } = req.body;
+
         const profile = {
           // profileId: uuidv4(),
-          name: username,
+          name,
+          phone,
+          address,
+          golf_club_size,
           user_id: createdUser.insertId,
         };
         await insertRecord("profiles", profile);

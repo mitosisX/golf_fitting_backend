@@ -12,7 +12,7 @@ export const create = async (req, res) => {
 export const get = async (req, res) => {
   const user_id = req.params.id;
   const profile = await checkRecordExists("profiles", "user_id", user_id);
-  res.status(200).json({ data: profile });
+  res.status(200).json({ data: profile[0] });
 };
 
 export const update = async (req, res) => {
