@@ -75,20 +75,20 @@ export const fittings_for_calendar_view = async (req, res) => {
     Fittings.type AS fitting_type,
     Fittings.scheduled_date,
     Fittings.status
-FROM 
-    Fittings
-JOIN 
-    Users 
-ON 
-    Fittings.user_id = Users.user_id
-JOIN 
-    Profiles 
-ON 
-    Profiles.user_id = Users.user_id
-WHERE 
-    Fittings.scheduled_date IS NOT NULL
-ORDER BY 
-    Fittings.scheduled_date ASC;
+    FROM 
+        Fittings
+    JOIN 
+        Users 
+    ON 
+        Fittings.user_id = Users.user_id
+    JOIN 
+        Profiles 
+    ON 
+        Profiles.user_id = Users.user_id
+    WHERE 
+        Fittings.scheduled_date IS NOT NULL
+    ORDER BY 
+        Fittings.scheduled_date ASC;
     `);
 
     res.status(200).json({ data: fittings });

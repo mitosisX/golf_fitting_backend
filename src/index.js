@@ -18,10 +18,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/api/", authRoutes, adminRouter, consumerRouter);
 
-const PORT = process.env.PORT;
-
 connectDB();
 
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log("Running");
 });

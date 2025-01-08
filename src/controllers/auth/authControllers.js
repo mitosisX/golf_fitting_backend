@@ -1,7 +1,11 @@
 import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import { checkRecordExists, insertRecord } from "../../utils/sqlFunctions.js";
+import {
+  checkRecordExists,
+  executeRawSQL,
+  insertRecord,
+} from "../../utils/sqlFunctions.js";
 
 const generateAccessToken = (user_id) =>
   jwt.sign({ user_id }, process.env.JWT_SECRET, { expiresIn: "7d" });

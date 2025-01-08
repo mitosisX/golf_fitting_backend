@@ -3,18 +3,6 @@ import config from "../db/config.js";
 
 const pool = mysql2.createPool(config);
 
-export const createTable = (schema) => {
-  return new Promise((resolve, reject) => {
-    pool.query(schema, (err, results) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(results);
-      }
-    });
-  });
-};
-
 export const checkRecordExists = (tableName, column, value) => {
   return new Promise((resolve, reject) => {
     const query = `SELECT * FROM ${tableName} WHERE ${column} = ?`;
